@@ -25,10 +25,7 @@ app = FastAPI(title="Kanak Garg Profile API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://kanakgarg.dev",
-        "http://localhost:3000",
-        "http://127.0.0.1:5500",
-        "*",  # loosen for now; tighten once the site has a fixed domain
+        "https://kanak1009.github.io",
     ],
     allow_methods=["GET"],
     allow_headers=["*"],
