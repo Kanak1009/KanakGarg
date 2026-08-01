@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Swap this for your deployed backend's URL (see /backend in the project root).
   // Until it's deployed, the fetch below fails silently and the terminal falls
   // back to the bundled JSON — so the page works perfectly either way.
-  const API_BASE = 'https://api.kanakgarg.dev';
+  const API_BASE = 'https://kanakgarg.onrender.com';
 
   function jsonToColoredHTML(obj) {
     const entries = Object.entries(obj).map(([k, v]) => {
