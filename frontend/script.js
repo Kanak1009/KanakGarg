@@ -122,12 +122,40 @@ document.addEventListener('DOMContentLoaded', () => {
     filtered.forEach((cmd, i) => {
       const li = document.createElement('li');
       li.className = 'cmdk-item' + (i === activeIndex ? ' active' : '');
+      li.dataset.index = String(i);
       li.innerHTML = `<span class="cmdk-item-label">${cmd.label}</span><span class="cmdk-item-hint">${cmd.hint}</span>`;
-      li.addEventListener('mouseenter', () => { activeIndex = i; renderList(); });
-      li.addEventListener('click', () => runCommand(cmd));
       cmdkList.appendChild(li);
     });
   }
+
+  // Only toggle the 'active' class on existing nodes — never rebuild the
+  // list here. Rebuilding on hover was destroying the element mid-click.
+  function highlightActive() {
+    Array.from(cmdkList.children).forEach((li) => {
+      if (!li.dataset) return;
+      const i = Number(li.dataset.index);
+      li.classList.toggle('active', i === activeIndex);
+    });
+  }
+
+  cmdkList.addEventListener('mousemove', (e) => {
+    const item = e.target.closest('.cmdk-item');
+    if (!item || item.dataset.index === undefined) return;
+    const i = Number(item.dataset.index);
+    if (i !== activeIndex) {
+      activeIndex = i;
+      highlightActive();
+    }
+  });
+
+  // Single delegated click handler — works even if the list is re-rendered
+  // for other reasons (filtering), since we always look up the current node.
+  cmdkList.addEventListener('click', (e) => {
+    const item = e.target.closest('.cmdk-item');
+    if (!item || item.dataset.index === undefined) return;
+    const cmd = filtered[Number(item.dataset.index)];
+    if (cmd) runCommand(cmd);
+  });
 
   function runCommand(cmd) {
     closeCmdk();
@@ -170,11 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         activeIndex = Math.min(activeIndex + 1, filtered.length - 1);
-        renderList();
+        highlightActive();
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         activeIndex = Math.max(activeIndex - 1, 0);
-        renderList();
+        highlightActive();
       } else if (e.key === 'Enter') {
         e.preventDefault();
         if (filtered[activeIndex]) runCommand(filtered[activeIndex]);
