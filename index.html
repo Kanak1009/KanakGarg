@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanak Garg — Backend Developer</title>
+<meta name="description" content="Kanak Garg — Backend Developer specializing in Python, FastAPI, PostgreSQL and REST API development.">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kanak Garg — Backend Developer">
+<meta property="og:description" content="Backend Developer specializing in Python, FastAPI, PostgreSQL and REST API development.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:url" content="https://kanakgarg.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kanak Garg — Backend Developer">
+<meta name="twitter:description" content="Backend Developer specializing in Python, FastAPI, PostgreSQL and REST API development.">
+<meta name="twitter:image" content="og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Kanak Garg",
+  "jobTitle": "Backend Developer",
+  "email": "mailto:kanakgarg109@gmail.com",
+  "telephone": "+91-7385149145",
+  "address": { "@type": "PostalAddress", "addressLocality": "Pune", "addressCountry": "IN" },
+  "url": "https://kanakgarg.dev/",
+  "sameAs": [
+    "https://www.linkedin.com/in/kanak-garg-a339a3293/",
+    "https://github.com/Kanak1009"
+  ],
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "MIT World Peace University" },
+    { "@type": "CollegeOrUniversity", "name": "Nowrosjee Wadia College" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      <span class="prompt-char">$</span> kanak<span class="dim">.garg</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#top"><span class="route-method get">GET</span>/</a></li>
+        <li><a href="#experience"><span class="route-method get">GET</span>/experience</a></li>
+        <li><a href="#projects"><span class="route-method get">GET</span>/projects</a></li>
+        <li><a href="#skills"><span class="route-method get">GET</span>/skills</a></li>
+        <li><a href="#contact"><span class="route-method post">POST</span>/contact</a></li>
+      </ul>
+      <button class="cmdk-trigger" id="cmdkTrigger" aria-label="Open command palette" type="button">
+        <span>Search</span>
+        <span class="cmdk-kbd"><kbd id="cmdkKbdMod">⌘</kbd><kbd>K</kbd></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- COMMAND PALETTE -->
+<div class="cmdk-overlay" id="cmdkOverlay" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="cmdk-input-row">
+      <span class="prompt-char">$</span>
+      <input type="text" id="cmdkInput" class="cmdk-input" placeholder="Type a command… try 'contact' or 'resume'" autocomplete="off" spellcheck="false">
+      <kbd class="cmdk-esc">esc</kbd>
+    </div>
+    <ul class="cmdk-list" id="cmdkList"></ul>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">// personal api &middot; v1</p>
+      <h1 class="hero-title">Backend developer<br>building systems that<br><span class="accent-underline">don't fall over.</span></h1>
+      <p class="hero-sub">I design REST APIs, authentication flows, and database-driven applications with Python, FastAPI and PostgreSQL — currently based in Pune, India.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary"><span class="route-method get">GET</span> /projects</a>
+        <a href="#contact" class="btn btn-ghost"><span class="route-method post">POST</span> /contact</a>
+        <a href="Kanak_Garg_Resume.pdf" download class="btn btn-ghost"><span class="route-method get">GET</span> /resume.pdf</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">20+</span><span class="stat-label">API endpoints shipped</span></div>
+        <div class="stat"><span class="stat-num">110%</span><span class="stat-label">perf. improvement</span></div>
+        <div class="stat"><span class="stat-num">8.50</span><span class="stat-label">CGPA, B.Sc CS</span></div>
+      </div>
+    </div>
+
+    <div class="terminal" id="terminal">
+      <div class="terminal-titlebar">
+        <span class="dot dot-red"></span><span class="dot dot-amber"></span><span class="dot dot-green"></span>
+        <span class="terminal-title">zsh — kanakgarg.dev</span>
+        <span class="terminal-status" id="terminalStatus"><span class="status-dot"></span><span id="terminalStatusText">connecting…</span></span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line">
+          <span class="prompt-char">$</span>
+          <span id="typedCommand"></span><span class="cursor" id="typeCursor">&nbsp;</span>
+        </div>
+        <pre class="terminal-response" id="terminalResponse" aria-live="polite"></pre>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-inner">
+      <p class="section-eyebrow">01 &middot; endpoint</p>
+      <h2 class="section-title">/experience</h2>
+
+      <article class="endpoint-card reveal">
+        <button class="endpoint-header" aria-expanded="true" data-toggle>
+          <span class="route-method get">GET</span>
+          <span class="endpoint-path">/experience/project-gaia</span>
+          <span class="endpoint-status status-200">200 OK</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="endpoint-body">
+          <div class="endpoint-meta">
+            <span class="meta-item">Backend Developer</span>
+            <span class="meta-sep">&middot;</span>
+            <span class="meta-item">MIT World Peace University — Project GAIA</span>
+            <span class="meta-sep">&middot;</span>
+            <span class="meta-item">Jul 2025 – Dec 2025</span>
+            <span class="meta-sep">&middot;</span>
+            <span class="meta-item">Pune, India</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Built 20+ CRUD API endpoints across multiple application features.</li>
+            <li>Shipped forgotten-password and email services, and integrated an optimization framework that improved performance by 110%.</li>
+            <li>Hardened existing APIs with robust validation and error handling.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">REST APIs</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <p class="section-eyebrow">02 &middot; endpoints</p>
+      <h2 class="section-title">/projects</h2>
+      <p class="section-sub">Three resources, three different problems — a security-critical voting system, a rules engine, and a small ML classifier.</p>
+
+      <div class="endpoint-list">
+
+        <!-- BioVote -->
+        <article class="endpoint-card reveal">
+          <button class="endpoint-header" aria-expanded="false" data-toggle>
+            <span class="route-method get">GET</span>
+            <span class="endpoint-path">/projects/biovote</span>
+            <span class="endpoint-status status-200">200 OK</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="endpoint-body">
+            <p class="endpoint-desc">Biometric Voter Verification System — a group project. Built secure REST APIs in Go for booth-level voter verification, from officer login to duplicate-vote prevention.</p>
+            <ul class="bullet-list">
+              <li>APIs for officer login, voter lookup, booth dashboard, and audit logs.</li>
+              <li>Integrated Firebase Firestore for real-time voter records and polling-booth data.</li>
+              <li>Implemented JWT authentication, role-based access control, and transaction-based vote validation.</li>
+            </ul>
+            <div class="tag-row">
+              <span class="tag">Go</span><span class="tag">Firebase Firestore</span><span class="tag">JWT</span><span class="tag">RBAC</span>
+            </div>
+            <a href="https://github.com/MidhunManu/BioVote" target="_blank" rel="noopener" class="source-link">View source <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <!-- Coupon Engine -->
+        <article class="endpoint-card reveal">
+          <button class="endpoint-header" aria-expanded="false" data-toggle>
+            <span class="route-method get">GET</span>
+            <span class="endpoint-path">/projects/coupon-engine</span>
+            <span class="endpoint-status status-200">200 OK</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="endpoint-body">
+            <p class="endpoint-desc">Coupon Recommendation Engine — a solo project. A rule-based engine in Python that maximizes customer savings at checkout.</p>
+            <ul class="bullet-list">
+              <li>Eligibility checks for validity dates, minimum cart value, and category applicability.</li>
+              <li>Discount logic for both percentage-based and flat-value coupons.</li>
+              <li>CLI interface, with unit tests written using pytest.</li>
+            </ul>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag">pytest</span><span class="tag">CLI</span>
+            </div>
+            <a href="https://github.com/Kanak1009/Smart-Coupon-Recommendation" target="_blank" rel="noopener" class="source-link">View source <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <!-- Toxic Comment Flagger -->
+        <article class="endpoint-card reveal">
+          <button class="endpoint-header" aria-expanded="false" data-toggle>
+            <span class="route-method get">GET</span>
+            <span class="endpoint-path">/projects/toxic-comment-flagger</span>
+            <span class="endpoint-status status-200">200 OK</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="endpoint-body">
+            <p class="endpoint-desc">A machine learning system that classifies comments into toxic, obscene, insult, and sarcastic categories.</p>
+            <ul class="bullet-list">
+              <li>TF-IDF vectorization for text preprocessing and feature extraction.</li>
+              <li>A neural network built from Dense layers with ReLU and Sigmoid activations.</li>
+              <li>Trained with backpropagation, with an end-to-end prediction pipeline.</li>
+            </ul>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Neural Networks</span><span class="tag">TF-IDF</span>
+            </div>
+            <a href="https://github.com/Kanak1009/Toxic-Comment-Flagger-ML" target="_blank" rel="noopener" class="source-link">View source <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <p class="section-eyebrow">03 &middot; endpoint</p>
+      <h2 class="section-title">/skills</h2>
+
+      <div class="skills-grid">
+        <div class="skills-block reveal skills-block--blue">
+          <p class="skills-key"><span class="jk">"languages"</span></p>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Java</span><span class="tag">Go</span>
+          </div>
+        </div>
+        <div class="skills-block reveal skills-block--amber">
+          <p class="skills-key"><span class="jk">"frameworks_and_libraries"</span></p>
+          <div class="tag-row">
+            <span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span>
+          </div>
+        </div>
+        <div class="skills-block reveal skills-block--green">
+          <p class="skills-key"><span class="jk">"tools"</span></p>
+          <div class="tag-row">
+            <span class="tag">PostgreSQL</span><span class="tag">Firebase</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Power BI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-block reveal">
+        <p class="section-eyebrow" style="margin-top: 3rem;">04 &middot; endpoint</p>
+        <h2 class="section-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">/education</h2>
+        <div class="edu-list">
+          <div class="edu-item">
+            <div class="edu-top">
+              <span class="edu-degree">Master's Degree, Computer Science</span>
+              <span class="edu-date">2025 — Present</span>
+            </div>
+            <span class="edu-school">MIT World Peace University, Pune, India</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-top">
+              <span class="edu-degree">Bachelor's Degree, Computer Science</span>
+              <span class="edu-date">2022 — 2025</span>
+            </div>
+            <span class="edu-school">Nowrosjee Wadia College, Pune, India &middot; CGPA 8.50</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <p class="section-eyebrow">05 &middot; endpoint</p>
+      <h2 class="section-title">/contact</h2>
+      <p class="section-sub">Open to backend and full-stack roles. The fastest way to reach me is email.</p>
+
+      <div class="contact-panel reveal">
+        <div class="contact-request">
+          <span class="route-method post">POST</span> <span class="endpoint-path">/contact</span>
+        </div>
+        <div class="contact-body">
+          <pre class="json-view"><span class="jp">{</span>
+  <span class="jk">"email"</span><span class="jp">:</span> <a href="mailto:kanakgarg109@gmail.com" class="js contact-value">"kanakgarg109@gmail.com"</a><span class="jp">,</span>
+  <span class="jk">"phone"</span><span class="jp">:</span> <a href="tel:+917385149145" class="js contact-value">"+91 73851 49145"</a><span class="jp">,</span>
+  <span class="jk">"location"</span><span class="jp">:</span> <span class="js">"Pune, India"</span><span class="jp">,</span>
+  <span class="jk">"linkedin"</span><span class="jp">:</span> <a href="https://www.linkedin.com/in/kanak-garg-a339a3293/" target="_blank" rel="noopener" class="js contact-value">"/in/kanak-garg"</a><span class="jp">,</span>
+  <span class="jk">"github"</span><span class="jp">:</span> <a href="https://github.com/Kanak1009" target="_blank" rel="noopener" class="js contact-value">"/Kanak1009"</a><span class="jp">,</span>
+  <span class="jk">"resume"</span><span class="jp">:</span> <a href="Kanak_Garg_Resume.pdf" download class="js contact-value">"download.pdf"</a>
+<span class="jp">}</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>&copy; <span id="year"></span> Kanak Garg</span>
+    <span class="footer-dim">// status: available_for_hire = true</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
