@@ -583,27 +583,6 @@ ul{ list-style: none; }
   .gh-stat-link{ margin-left: 0; width: 100%; }
 }
 
-/* changelog */
-.changelog-list{ display: flex; flex-direction: column; gap: 2px; }
-.changelog-item{
-  display: flex; align-items: baseline; gap: 16px;
-  padding: 14px 18px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.86rem;
-}
-.changelog-item + .changelog-item{ margin-top: 8px; }
-.changelog-hash{ color: var(--accent-amber); flex-shrink: 0; }
-.changelog-msg{ color: var(--text-primary); flex: 1; font-family: var(--font-body); font-size: 0.92rem; }
-.changelog-date{ color: var(--text-tertiary); font-size: 0.78rem; flex-shrink: 0; }
-
-@media (max-width: 640px){
-  .changelog-item{ flex-wrap: wrap; }
-  .changelog-msg{ order: 3; width: 100%; }
-}
-
 /* contact */
 .contact-panel{
   background: var(--bg-surface);
@@ -690,12 +669,11 @@ ul{ list-style: none; }
 
   .hero-title, .section-title, .eyebrow, .section-eyebrow{ color: #111 !important; }
   .hero-sub, .section-sub, .endpoint-desc, .bullet-list li, .edu-school,
-  .stat-label, .text-secondary, .case-text, .gh-stat-label, .changelog-date{ color: #333 !important; }
-  .case-label, .featured-badge, .gh-stat-num, .changelog-hash{ color: #a05a00 !important; }
-  .changelog-msg{ color: #111 !important; }
+  .stat-label, .text-secondary, .case-text, .gh-stat-label{ color: #333 !important; }
+  .case-label, .featured-badge, .gh-stat-num{ color: #a05a00 !important; }
 
   .endpoint-card, .json-panel, .edu-item, .contact-panel, .skills-block,
-  .activity-stats, .activity-graph, .changelog-item{
+  .activity-stats, .activity-graph{
     background: #fff !important;
     border: 1px solid #ccc !important;
     box-shadow: none !important;

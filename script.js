@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { label: 'Go to projects', hint: 'GET /projects', action: () => scrollToId('projects') },
     { label: 'Go to skills', hint: 'GET /skills', action: () => scrollToId('skills') },
     { label: 'Go to activity', hint: 'GET /activity', action: () => scrollToId('activity') },
-    { label: 'Go to changelog', hint: 'GET /changelog', action: () => scrollToId('changelog') },
     { label: 'Go to contact', hint: 'POST /contact', action: () => scrollToId('contact') },
     { label: 'Download resume', hint: 'GET /resume.pdf', action: () => triggerDownload('Kanak_Garg_Resume.pdf') },
     { label: 'Email Kanak', hint: 'kanakgarg109@gmail.com', action: () => window.location.href = 'mailto:kanakgarg109@gmail.com' },
