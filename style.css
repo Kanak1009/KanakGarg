@@ -578,6 +578,78 @@ ul{ list-style: none; }
 }
 .gh-chart{ display: block; min-width: 480px; width: 100%; }
 
+.gh-cal-head{
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.gh-cal-wrap{ position: relative; }
+.gh-cal-months{
+  position: relative;
+  height: 16px;
+  margin-bottom: 4px;
+  margin-left: 28px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+}
+.gh-cal-months span{ position: absolute; top: 0; white-space: nowrap; }
+
+.gh-cal-body{ display: flex; gap: 6px; }
+.gh-cal-daylabels{
+  display: flex; flex-direction: column; gap: 3px;
+  flex-shrink: 0; width: 22px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--text-tertiary);
+}
+.gh-cal-daylabels span{ height: 11px; line-height: 11px; }
+
+.gh-calendar{
+  display: flex;
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.gh-cal-week{ display: flex; flex-direction: column; gap: 3px; }
+.gh-cal-cell{
+  width: 11px; height: 11px;
+  border-radius: 2px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+}
+.gh-cal-cell.empty{ background: transparent; border: none; }
+.gh-cal-cell[data-level="1"]{ background: rgba(63,185,104,0.35); border-color: transparent; }
+.gh-cal-cell[data-level="2"]{ background: rgba(63,185,104,0.55); border-color: transparent; }
+.gh-cal-cell[data-level="3"]{ background: rgba(63,185,104,0.78); border-color: transparent; }
+.gh-cal-cell[data-level="4"]{ background: var(--accent-green); border-color: transparent; }
+
+.gh-cal-legend{
+  display: flex; align-items: center; gap: 5px;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+}
+.gh-cal-legend .gh-cell{
+  width: 11px; height: 11px;
+  border-radius: 2px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  display: inline-block;
+}
+.gh-cal-legend .gh-cell[data-level="1"]{ background: rgba(63,185,104,0.35); border-color: transparent; }
+.gh-cal-legend .gh-cell[data-level="2"]{ background: rgba(63,185,104,0.55); border-color: transparent; }
+.gh-cal-legend .gh-cell[data-level="3"]{ background: rgba(63,185,104,0.78); border-color: transparent; }
+.gh-cal-legend .gh-cell[data-level="4"]{ background: var(--accent-green); border-color: transparent; }
+
+@media (max-width: 640px){
+  .gh-cal-cell, .gh-cal-legend .gh-cell{ width: 9px; height: 9px; }
+  .gh-cal-daylabels span{ height: 9px; line-height: 9px; }
+}
+
 @media (max-width: 640px){
   .activity-stats{ gap: 24px; }
   .gh-stat-link{ margin-left: 0; width: 100%; }
