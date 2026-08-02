@@ -468,6 +468,31 @@ ul{ list-style: none; }
 }
 .source-link:hover{ gap: 10px; }
 
+/* featured case-study card */
+.endpoint-card--featured{ border-color: rgba(245,166,35,0.35); }
+.featured-badge{
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent-amber);
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.case-block{ margin-bottom: 18px; }
+.case-label{
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-amber);
+  margin-bottom: 6px;
+}
+.case-text{
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 70ch;
+}
+
 /* json panel (skills) */
 .json-panel{
   background: var(--bg-surface);
@@ -487,21 +512,6 @@ ul{ list-style: none; }
 .jp{ color: var(--text-tertiary); }
 .contact-value{ transition: color 0.15s ease; border-bottom: 1px dashed rgba(63,185,104,0.4); }
 .contact-value:hover{ color: var(--accent-amber); border-color: var(--accent-amber); }
-
-.copy-btn{
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-tertiary);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 1px 7px;
-  cursor: pointer;
-  vertical-align: middle;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-.copy-btn:hover{ color: var(--text-primary); border-color: var(--accent-blue); }
-.copy-btn.copied{ color: var(--accent-green); border-color: var(--accent-green); }
 
 /* skills grid */
 .skills-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -539,6 +549,60 @@ ul{ list-style: none; }
 .edu-degree{ font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; }
 .edu-date{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-tertiary); }
 .edu-school{ color: var(--text-secondary); font-size: 0.92rem; }
+
+/* activity */
+.activity-stats{
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin-bottom: 20px;
+}
+.gh-stat{ display: flex; flex-direction: column; gap: 4px; }
+.gh-stat-num{
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--text-primary);
+}
+.gh-stat-label{ font-size: 0.78rem; color: var(--text-tertiary); font-family: var(--font-mono); }
+.gh-stat-link{ margin-left: auto; }
+
+.activity-graph{
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  overflow-x: auto;
+}
+.gh-chart{ display: block; min-width: 640px; width: 100%; filter: saturate(0.9); }
+
+@media (max-width: 640px){
+  .activity-stats{ gap: 24px; }
+  .gh-stat-link{ margin-left: 0; width: 100%; }
+}
+
+/* changelog */
+.changelog-list{ display: flex; flex-direction: column; gap: 2px; }
+.changelog-item{
+  display: flex; align-items: baseline; gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+}
+.changelog-item + .changelog-item{ margin-top: 8px; }
+.changelog-hash{ color: var(--accent-amber); flex-shrink: 0; }
+.changelog-msg{ color: var(--text-primary); flex: 1; font-family: var(--font-body); font-size: 0.92rem; }
+.changelog-date{ color: var(--text-tertiary); font-size: 0.78rem; flex-shrink: 0; }
+
+@media (max-width: 640px){
+  .changelog-item{ flex-wrap: wrap; }
+  .changelog-msg{ order: 3; width: 100%; }
+}
 
 /* contact */
 .contact-panel{
@@ -626,9 +690,12 @@ ul{ list-style: none; }
 
   .hero-title, .section-title, .eyebrow, .section-eyebrow{ color: #111 !important; }
   .hero-sub, .section-sub, .endpoint-desc, .bullet-list li, .edu-school,
-  .stat-label, .text-secondary{ color: #333 !important; }
+  .stat-label, .text-secondary, .case-text, .gh-stat-label, .changelog-date{ color: #333 !important; }
+  .case-label, .featured-badge, .gh-stat-num, .changelog-hash{ color: #a05a00 !important; }
+  .changelog-msg{ color: #111 !important; }
 
-  .endpoint-card, .json-panel, .edu-item, .contact-panel, .skills-block{
+  .endpoint-card, .json-panel, .edu-item, .contact-panel, .skills-block,
+  .activity-stats, .activity-graph, .changelog-item{
     background: #fff !important;
     border: 1px solid #ccc !important;
     box-shadow: none !important;

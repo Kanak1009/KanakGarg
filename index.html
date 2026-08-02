@@ -64,6 +64,7 @@
         <li><a href="#experience"><span class="route-method get">GET</span>/experience</a></li>
         <li><a href="#projects"><span class="route-method get">GET</span>/projects</a></li>
         <li><a href="#skills"><span class="route-method get">GET</span>/skills</a></li>
+        <li><a href="#activity"><span class="route-method get">GET</span>/activity</a></li>
         <li><a href="#contact"><span class="route-method post">POST</span>/contact</a></li>
       </ul>
       <button class="cmdk-trigger" id="cmdkTrigger" aria-label="Open command palette" type="button">
@@ -170,22 +171,34 @@
       <div class="endpoint-list">
 
         <!-- BioVote -->
-        <article class="endpoint-card reveal">
+        <article class="endpoint-card endpoint-card--featured reveal">
           <button class="endpoint-header" aria-expanded="false" data-toggle>
             <span class="route-method get">GET</span>
             <span class="endpoint-path">/projects/biovote</span>
+            <span class="featured-badge">case study</span>
             <span class="endpoint-status status-200">200 OK</span>
             <svg class="chevron" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="endpoint-body">
-            <p class="endpoint-desc">Biometric Voter Verification System — a group project. Built secure REST APIs in Go for booth-level voter verification, from officer login to duplicate-vote prevention.</p>
-            <ul class="bullet-list">
-              <li>APIs for officer login, voter lookup, booth dashboard, and audit logs.</li>
-              <li>Integrated Firebase Firestore for real-time voter records and polling-booth data.</li>
-              <li>Implemented JWT authentication, role-based access control, and transaction-based vote validation.</li>
-            </ul>
+            <p class="endpoint-desc">Biometric Voter Verification System — a group project built to explore what a booth-level identity and vote-integrity system actually requires under the hood.</p>
+
+            <div class="case-block">
+              <p class="case-label">// the problem</p>
+              <p class="case-text">A polling booth needs more than "check a fingerprint and let someone vote." Officers need to be authenticated separately from voters. Every booth needs its own dashboard and audit trail. And the system has to make it structurally impossible for the same voter to be recorded twice — even if two booths query the same record seconds apart.</p>
+            </div>
+
+            <div class="case-block">
+              <p class="case-label">// the approach</p>
+              <p class="case-text">I worked on the backend: REST APIs in Go covering officer login, voter lookup, booth dashboards, and audit logs, with Firebase Firestore behind it for real-time voter records and polling-booth data. Access control runs on JWT authentication with role-based access control, so an officer's token scopes exactly what that officer's booth is allowed to see or modify.</p>
+            </div>
+
+            <div class="case-block">
+              <p class="case-label">// the key decision</p>
+              <p class="case-text">Duplicate-vote prevention was the part that couldn't be an afterthought. Vote validation runs as a transaction rather than a simple read-then-write — so a "check eligibility, then mark as voted" sequence can't be split by two concurrent requests hitting the same record. It's the same class of problem as double-spending in a ledger: correctness matters more than speed here, and the transaction boundary is where that gets enforced.</p>
+            </div>
+
             <div class="tag-row">
-              <span class="tag">Go</span><span class="tag">Firebase Firestore</span><span class="tag">JWT</span><span class="tag">RBAC</span>
+              <span class="tag">Go</span><span class="tag">Firebase Firestore</span><span class="tag">JWT</span><span class="tag">RBAC</span><span class="tag">Transactional writes</span>
             </div>
             <a href="https://github.com/MidhunManu/BioVote" target="_blank" rel="noopener" class="source-link">View source <span aria-hidden="true">&rarr;</span></a>
           </div>
@@ -289,10 +302,76 @@
     </div>
   </section>
 
+  <!-- ACTIVITY -->
+  <section class="section" id="activity">
+    <div class="section-inner">
+      <p class="section-eyebrow">05 &middot; endpoint</p>
+      <h2 class="section-title">/activity</h2>
+      <p class="section-sub">Pulled live from GitHub — not a snapshot, this updates on its own.</p>
+
+      <div class="activity-stats reveal" id="ghStats">
+        <div class="gh-stat">
+          <span class="gh-stat-num" id="ghRepos">—</span>
+          <span class="gh-stat-label">public repos</span>
+        </div>
+        <div class="gh-stat">
+          <span class="gh-stat-num" id="ghFollowers">—</span>
+          <span class="gh-stat-label">followers</span>
+        </div>
+        <div class="gh-stat">
+          <span class="gh-stat-num" id="ghSince">—</span>
+          <span class="gh-stat-label">on GitHub since</span>
+        </div>
+        <a href="https://github.com/Kanak1009" target="_blank" rel="noopener" class="source-link gh-stat-link">View profile <span aria-hidden="true">&rarr;</span></a>
+      </div>
+
+      <div class="activity-graph reveal">
+        <img src="https://ghchart.rshah.org/5B9DF5/Kanak1009" alt="Kanak Garg's GitHub contribution graph" class="gh-chart" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANGELOG -->
+  <section class="section" id="changelog">
+    <div class="section-inner">
+      <p class="section-eyebrow">06 &middot; endpoint</p>
+      <h2 class="section-title">/changelog</h2>
+      <p class="section-sub">A running log, not a highlight reel. Update the dates below as things actually happen.</p>
+
+      <ul class="changelog-list reveal">
+        <li class="changelog-item">
+          <span class="changelog-hash">a3f9c1e</span>
+          <span class="changelog-msg">Deployed a live FastAPI backend behind this portfolio's terminal widget</span>
+          <span class="changelog-date">Aug 2026</span>
+        </li>
+        <li class="changelog-item">
+          <span class="changelog-hash">7d2b048</span>
+          <span class="changelog-msg">Working through Striver's A2Z DSA course, structuring notes for GitHub</span>
+          <span class="changelog-date">Ongoing</span>
+        </li>
+        <li class="changelog-item">
+          <span class="changelog-hash">e91a3c7</span>
+          <span class="changelog-msg">Wrapped up Backend Developer role on Project GAIA at MIT WPU</span>
+          <span class="changelog-date">Dec 2025</span>
+        </li>
+        <li class="changelog-item">
+          <span class="changelog-hash">4f0d612</span>
+          <span class="changelog-msg">Built the vote-validation and RBAC layer for BioVote</span>
+          <span class="changelog-date">2025</span>
+        </li>
+        <li class="changelog-item">
+          <span class="changelog-hash">c88e2a0</span>
+          <span class="changelog-msg">Started MSc in Computer Science at MIT World Peace University</span>
+          <span class="changelog-date">2025</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="section-inner">
-      <p class="section-eyebrow">05 &middot; endpoint</p>
+      <p class="section-eyebrow">07 &middot; endpoint</p>
       <h2 class="section-title">/contact</h2>
       <p class="section-sub">Open to backend and full-stack roles. The fastest way to reach me is email.</p>
 
@@ -302,8 +381,8 @@
         </div>
         <div class="contact-body">
           <pre class="json-view"><span class="jp">{</span>
-  <span class="jk">"email"</span><span class="jp">:</span> <a href="mailto:kanakgarg109@gmail.com" class="js contact-value">"kanakgarg109@gmail.com"</a><span class="jp">,</span> <button type="button" class="copy-btn" data-copy="kanakgarg109@gmail.com" aria-label="Copy email address">copy</button>
-  <span class="jk">"phone"</span><span class="jp">:</span> <a href="tel:+917385149145" class="js contact-value">"+91 73851 49145"</a><span class="jp">,</span> <button type="button" class="copy-btn" data-copy="+91 73851 49145" aria-label="Copy phone number">copy</button>
+  <span class="jk">"email"</span><span class="jp">:</span> <a href="mailto:kanakgarg109@gmail.com" class="js contact-value">"kanakgarg109@gmail.com"</a><span class="jp">,</span>
+  <span class="jk">"phone"</span><span class="jp">:</span> <a href="tel:+917385149145" class="js contact-value">"+91 73851 49145"</a><span class="jp">,</span>
   <span class="jk">"location"</span><span class="jp">:</span> <span class="js">"Pune, India"</span><span class="jp">,</span>
   <span class="jk">"linkedin"</span><span class="jp">:</span> <a href="https://www.linkedin.com/in/kanak-garg-a339a3293/" target="_blank" rel="noopener" class="js contact-value">"/in/kanak-garg"</a><span class="jp">,</span>
   <span class="jk">"github"</span><span class="jp">:</span> <a href="https://github.com/Kanak1009" target="_blank" rel="noopener" class="js contact-value">"/Kanak1009"</a><span class="jp">,</span>
