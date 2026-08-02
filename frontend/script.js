@@ -91,6 +91,84 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  /* ---------- GitHub contribution calendar ---------- */
+  (async function loadGitHubCalendar() {
+    const calEl = document.getElementById('ghCalendar');
+    const monthsEl = document.getElementById('ghCalMonths');
+    const totalEl = document.getElementById('ghCalTotal');
+    if (!calEl) return;
+
+    const CELL = 11, GAP = 3, STEP = CELL + GAP;
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    try {
+      const res = await fetch('https://github-contributions-api.jogruber.de/v4/Kanak1009?y=last');
+      if (!res.ok) throw new Error('bad response');
+      const data = await res.json();
+      const days = data.contributions || [];
+      if (!days.length) throw new Error('no data');
+
+      // Pad the front so the grid starts on a Sunday, like GitHub's own layout.
+      const firstDate = new Date(days[0].date + 'T00:00:00');
+      const leadingBlanks = firstDate.getDay(); // 0 = Sunday
+      const cells = Array(leadingBlanks).fill(null).concat(days);
+
+      const weeks = [];
+      for (let i = 0; i < cells.length; i += 7) {
+        weeks.push(cells.slice(i, i + 7));
+      }
+
+      calEl.innerHTML = '';
+      let lastMonth = -1;
+      const monthLabels = [];
+
+      weeks.forEach((week, wi) => {
+        const col = document.createElement('div');
+        col.className = 'gh-cal-week';
+        week.forEach(day => {
+          const cell = document.createElement('div');
+          if (!day) {
+            cell.className = 'gh-cal-cell empty';
+          } else {
+            cell.className = 'gh-cal-cell';
+            cell.dataset.level = String(day.level ?? 0);
+            cell.title = `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`;
+          }
+          col.appendChild(cell);
+        });
+        calEl.appendChild(col);
+
+        const firstReal = week.find(d => d);
+        if (firstReal) {
+          const m = new Date(firstReal.date + 'T00:00:00').getMonth();
+          if (m !== lastMonth) {
+            monthLabels.push({ index: wi, name: monthNames[m] });
+            lastMonth = m;
+          }
+        }
+      });
+
+      if (monthsEl) {
+        monthsEl.innerHTML = '';
+        monthLabels.forEach(({ index, name }) => {
+          const span = document.createElement('span');
+          span.textContent = name;
+          span.style.left = (index * STEP) + 'px';
+          monthsEl.appendChild(span);
+        });
+      }
+
+      if (totalEl) {
+        const total = days.reduce((sum, d) => sum + (d.count || 0), 0);
+        totalEl.textContent = `${total} contributions in the last year`;
+      }
+    } catch (err) {
+      if (totalEl) totalEl.textContent = 'Contribution data unavailable right now';
+      const wrap = calEl.closest('.gh-cal-wrap');
+      if (wrap) wrap.style.display = 'none';
+    }
+  })();
+
   /* ---------- command palette ---------- */
   const cmdkTrigger = document.getElementById('cmdkTrigger');
   const cmdkOverlay = document.getElementById('cmdkOverlay');
