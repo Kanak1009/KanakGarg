@@ -488,6 +488,21 @@ ul{ list-style: none; }
 .contact-value{ transition: color 0.15s ease; border-bottom: 1px dashed rgba(63,185,104,0.4); }
 .contact-value:hover{ color: var(--accent-amber); border-color: var(--accent-amber); }
 
+.copy-btn{
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 7px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.copy-btn:hover{ color: var(--text-primary); border-color: var(--accent-blue); }
+.copy-btn.copied{ color: var(--accent-green); border-color: var(--accent-green); }
+
 /* skills grid */
 .skills-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .skills-block{
@@ -589,4 +604,57 @@ ul{ list-style: none; }
   .json-view{ font-size: 0.76rem; }
   .endpoint-meta{ display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
   .meta-sep{ display: none; }
+}
+
+/* ============ print ============ */
+@media print{
+  .noise-overlay, .navbar, .cmdk-overlay, .terminal, .hero-actions,
+  .source-link, .chevron, .btn, .cmdk-trigger{
+    display: none !important;
+  }
+
+  body{
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .hero{ padding: 20px 0 !important; }
+  .hero::before{ display: none; }
+  .hero-inner{ display: block !important; }
+
+  .section{ padding: 24px 0 !important; border-top: 1px solid #ccc !important; break-inside: avoid; }
+
+  .hero-title, .section-title, .eyebrow, .section-eyebrow{ color: #111 !important; }
+  .hero-sub, .section-sub, .endpoint-desc, .bullet-list li, .edu-school,
+  .stat-label, .text-secondary{ color: #333 !important; }
+
+  .endpoint-card, .json-panel, .edu-item, .contact-panel, .skills-block{
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+  .endpoint-body{ max-height: none !important; padding: 0 20px 20px !important; }
+  .endpoint-header{ pointer-events: none; }
+  .chevron{ display: none !important; }
+
+  .tag{ background: #f0f0f0 !important; border: 1px solid #ccc !important; color: #333 !important; }
+
+  .route-method.get{ color: #1a56b0 !important; background: none !important; border-color: #1a56b0 !important; }
+  .route-method.post{ color: #a05a00 !important; background: none !important; border-color: #a05a00 !important; }
+  .status-200{ color: #1a7f3c !important; background: none !important; border-color: #1a7f3c !important; }
+
+  .jk{ color: #1a56b0 !important; }
+  .js{ color: #1a7f3c !important; }
+  .jp{ color: #666 !important; }
+  .contact-value{ color: #111 !important; }
+
+  a[href]::after{
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #666;
+  }
+  a[href^="#"]::after{ content: ""; }
+
+  .footer{ border-top: 1px solid #ccc !important; }
+  .footer-inner, .footer-dim{ color: #666 !important; }
 }
