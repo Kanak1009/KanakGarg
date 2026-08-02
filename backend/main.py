@@ -1,17 +1,3 @@
-"""
-Kanak Garg — personal profile API.
-
-Backs the "curl" terminal on the portfolio homepage. Returns the same data
-that's hardcoded in the frontend as a fallback, so deploying this just makes
-the terminal show live data instead of the bundled copy — nothing breaks
-either way.
-
-Run locally:
-    pip install -r requirements.txt
-    uvicorn main:app --reload
-
-Deploy free on Render, Railway, or Fly.io — see README.md in this folder.
-"""
 
 from datetime import date
 
@@ -20,12 +6,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Kanak Garg Profile API", version="1.0.0")
 
-# Allow the portfolio site (and localhost, while developing) to call this API
-# from the browser. Replace the production origin with your actual domain.
+# Allow only the real portfolio site (and localhost, while developing) to
+# call this API from the browser.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://kanak1009.github.io",
+        "http://localhost:3000",
+        "http://127.0.0.1:5500",
     ],
     allow_methods=["GET"],
     allow_headers=["*"],

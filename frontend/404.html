@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Kanak Garg</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .notfound{
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px;
+  }
+  .notfound-panel{
+    width: 100%; max-width: 560px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .notfound-bar{
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 18px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+  }
+  .notfound-status{
+    font-size: 0.72rem; font-weight: 700;
+    color: var(--accent-red);
+    background: rgba(245,101,79,0.12);
+    border: 1px solid rgba(245,101,79,0.3);
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .notfound-path{ color: var(--text-tertiary); font-size: 0.82rem; }
+  .notfound-body{ padding: 26px 26px 30px; }
+  .notfound-title{
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .notfound-sub{ color: var(--text-secondary); margin-bottom: 22px; font-size: 0.95rem; }
+  .notfound-json{
+    font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.9;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="notfound">
+  <div class="notfound-panel">
+    <div class="notfound-bar">
+      <span class="notfound-status">404</span>
+      <span class="notfound-path">GET <span id="reqPath">/unknown-route</span></span>
+    </div>
+    <div class="notfound-body">
+      <h1 class="notfound-title">Route not found</h1>
+      <p class="notfound-sub">That path doesn't exist on this API — or on this site.</p>
+      <pre class="notfound-json"><span class="jp">{</span>
+  <span class="jk">"status"</span><span class="jp">:</span> <span class="jb">404</span><span class="jp">,</span>
+  <span class="jk">"error"</span><span class="jp">:</span> <span class="js">"Not Found"</span><span class="jp">,</span>
+  <span class="jk">"message"</span><span class="jp">:</span> <span class="js">"The requested resource doesn't exist."</span>
+<span class="jp">}</span></pre>
+      <a href="/" class="btn btn-primary"><span class="route-method get">GET</span> /</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var p = document.getElementById('reqPath');
+  if (p) p.textContent = window.location.pathname || '/unknown-route';
+</script>
+</body>
+</html>
