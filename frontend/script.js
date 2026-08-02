@@ -70,34 +70,26 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('visible'));
   }
 
-  /* ---------- inline copy buttons (contact panel) ---------- */
-  document.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const text = btn.dataset.copy;
-      const done = () => {
-        const original = btn.textContent;
-        btn.textContent = 'copied';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = original;
-          btn.classList.remove('copied');
-        }, 1500);
-      };
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(done).catch(() => {});
-      } else {
-        // fallback for older browsers
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); done(); } catch (e) {}
-        document.body.removeChild(ta);
-      }
-    });
-  });
+  /* ---------- GitHub live stats ---------- */
+  (async function loadGitHubStats() {
+    const reposEl = document.getElementById('ghRepos');
+    const followersEl = document.getElementById('ghFollowers');
+    const sinceEl = document.getElementById('ghSince');
+    if (!reposEl) return;
+    try {
+      const res = await fetch('https://api.github.com/users/Kanak1009');
+      if (!res.ok) throw new Error('bad response');
+      const data = await res.json();
+      reposEl.textContent = data.public_repos ?? '—';
+      followersEl.textContent = data.followers ?? '—';
+      sinceEl.textContent = data.created_at ? new Date(data.created_at).getFullYear() : '—';
+    } catch (err) {
+      // GitHub API is rate-limited for unauthenticated requests; fail quietly.
+      reposEl.textContent = '—';
+      followersEl.textContent = '—';
+      sinceEl.textContent = '—';
+    }
+  })();
 
   /* ---------- command palette ---------- */
   const cmdkTrigger = document.getElementById('cmdkTrigger');
@@ -114,10 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
     { label: 'Go to experience', hint: 'GET /experience', action: () => scrollToId('experience') },
     { label: 'Go to projects', hint: 'GET /projects', action: () => scrollToId('projects') },
     { label: 'Go to skills', hint: 'GET /skills', action: () => scrollToId('skills') },
+    { label: 'Go to activity', hint: 'GET /activity', action: () => scrollToId('activity') },
+    { label: 'Go to changelog', hint: 'GET /changelog', action: () => scrollToId('changelog') },
     { label: 'Go to contact', hint: 'POST /contact', action: () => scrollToId('contact') },
     { label: 'Download resume', hint: 'GET /resume.pdf', action: () => triggerDownload('Kanak_Garg_Resume.pdf') },
     { label: 'Email Kanak', hint: 'kanakgarg109@gmail.com', action: () => window.location.href = 'mailto:kanakgarg109@gmail.com' },
-    { label: 'Copy email address', hint: 'clipboard', action: () => copyText('kanakgarg109@gmail.com', 'Email copied') },
     { label: 'Open GitHub', hint: 'github.com/Kanak1009', action: () => window.open('https://github.com/Kanak1009', '_blank', 'noopener') },
     { label: 'Open LinkedIn', hint: 'linkedin.com/in/kanak-garg', action: () => window.open('https://www.linkedin.com/in/kanak-garg-a339a3293/', '_blank', 'noopener') },
     { label: 'View BioVote source', hint: 'GET /projects/biovote', action: () => window.open('https://github.com/MidhunManu/BioVote', '_blank', 'noopener') },
@@ -133,10 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function triggerDownload(path) {
     const a = document.createElement('a');
     a.href = path; a.download = ''; a.click();
-  }
-
-  function copyText(text, msg) {
-    if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
   }
 
   let activeIndex = 0;
