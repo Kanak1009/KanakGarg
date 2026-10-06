@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
       command: 'curl -s https://kanakgarg.dev/api/v1/status',
       html:
 `<span class="jp">{</span>
-  <span class="jk">"endpoints_shipped"</span><span class="jp">:</span> <span class="jb">20</span><span class="jp">,</span>
+  <span class="jk">"endpoints_shipped"</span><span class="jp">:</span> <span class="jb">80</span><span class="jp">,</span>
   <span class="jk">"perf_improvement"</span><span class="jp">:</span> <span class="js">"110%"</span><span class="jp">,</span>
   <span class="jk">"currently"</span><span class="jp">:</span> <span class="js">"MSc Computer Science"</span><span class="jp">,</span>
   <span class="jk">"open_to_work"</span><span class="jp">:</span> <span class="jb">true</span>
