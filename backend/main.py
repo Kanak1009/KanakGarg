@@ -44,7 +44,7 @@ def profile():
     return {
         "name": "Kanak Garg",
         "role": "Backend Developer",
-        "stack": ["Python", "FastAPI", "PostgreSQL"],
+        "stack": ["Python", "Go", "FastAPI", "PostgreSQL"],
         "location": "Pune, India",
         "available_for_hire": True,
     }
@@ -53,7 +53,7 @@ def profile():
 @app.get("/api/v1/status")
 def status():
     return {
-        "endpoints_shipped": 80,
+        "endpoints_shipped": 100,
         "perf_improvement": "110%",
         "currently": "MSc Computer Science",
         "open_to_work": True,

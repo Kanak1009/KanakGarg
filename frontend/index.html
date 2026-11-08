@@ -93,14 +93,14 @@
     <div class="hero-copy">
       <p class="eyebrow">// personal api &middot; v1</p>
       <h1 class="hero-title">Backend developer<br>building systems that<br><span class="accent-underline">don't fall over.</span></h1>
-      <p class="hero-sub">I design REST APIs, authentication flows, and database-driven applications with Python, FastAPI and PostgreSQL — currently based in Pune, India.</p>
+      <p class="hero-sub">I design REST APIs, authentication flows, and database-driven applications with Python, Go, FastAPI and PostgreSQL — currently based in Pune, India.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary"><span class="route-method get">GET</span> /projects</a>
         <a href="#contact" class="btn btn-ghost"><span class="route-method post">POST</span> /contact</a>
         <a href="Kanak_Garg_Resume.pdf" download class="btn btn-ghost"><span class="route-method get">GET</span> /resume.pdf</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-num">80+</span><span class="stat-label">API endpoints shipped</span></div>
+        <div class="stat"><span class="stat-num">100+</span><span class="stat-label">API endpoints shipped</span></div>
         <div class="stat"><span class="stat-num">110%</span><span class="stat-label">perf. improvement</span></div>
         <div class="stat"><span class="stat-num">8.50</span><span class="stat-label">CGPA, B.Sc CS</span></div>
       </div>
@@ -149,9 +149,9 @@
             <span class="meta-item">Pune, India</span>
           </div>
           <ul class="bullet-list">
-            <li>Built 80+ CRUD API endpoints across multiple application features.</li>
-            <li>Shipped forgotten-password and email services, and integrated an optimization framework that improved performance by 110%.</li>
-            <li>Hardened existing APIs with robust validation and error handling.</li>
+            <li>Developed 100+ REST API endpoints backed by PostgreSQL for multiple application features.</li>
+            <li>Implemented authentication flows and email services, and integrated an optimization framework that improved performance by 110%.</li>
+            <li>Strengthened existing APIs with robust request validation and error handling.</li>
           </ul>
           <div class="tag-row">
             <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">REST APIs</span>
@@ -166,7 +166,7 @@
     <div class="section-inner">
       <p class="section-eyebrow">02 &middot; endpoints</p>
       <h2 class="section-title">/projects</h2>
-      <p class="section-sub">Three resources, three different problems — a security-critical voting system, a rules engine, and a small ML classifier.</p>
+      <p class="section-sub">Three resources, three different problems — a security-critical voting system, a full-stack approval workflow, and a small ML classifier.</p>
 
       <div class="endpoint-list">
 
@@ -180,49 +180,55 @@
             <svg class="chevron" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="endpoint-body">
-            <p class="endpoint-desc">Biometric Voter Verification System — a group project built to explore what a booth-level identity and vote-integrity system actually requires under the hood.</p>
+            <p class="endpoint-desc">Biometric Voter Verification System — a team hackathon project for the ECI (Election Commission of India), built around what a booth-level identity and vote-integrity system actually requires under the hood.</p>
 
             <div class="case-block">
               <p class="case-label">// the problem</p>
-              <p class="case-text">A polling booth needs more than "check a fingerprint and let someone vote." Officers need to be authenticated separately from voters. Every booth needs its own dashboard and audit trail. And the system has to make it structurally impossible for the same voter to be recorded twice — even if two booths query the same record seconds apart.</p>
+              <p class="case-text">A polling booth needs more than "scan a biometric and let someone vote." Officers need to be authenticated separately from voters. Every booth needs its own dashboard and an audit trail that shows tampering. And the system has to make it structurally impossible for the same voter to be recorded twice — even if two booths query the same record seconds apart.</p>
             </div>
 
             <div class="case-block">
               <p class="case-label">// the approach</p>
-              <p class="case-text">I worked on the backend: REST APIs in Go covering officer login, voter lookup, booth dashboards, and audit logs, with Firebase Firestore behind it for real-time voter records and polling-booth data. Access control runs on JWT authentication with role-based access control, so an officer's token scopes exactly what that officer's booth is allowed to see or modify.</p>
+              <p class="case-text">I built the backend: a Go (Gin) REST API with 6 endpoints covering Aadhaar + iris verification, the booth dashboard, and tamper-evident audit logs, with Firebase Firestore behind it. Access control runs on JWT authentication with role-based access control, so an officer's token scopes exactly what that officer's booth is allowed to see or modify.</p>
             </div>
 
             <div class="case-block">
               <p class="case-label">// the key decision</p>
-              <p class="case-text">Duplicate-vote prevention was the part that couldn't be an afterthought. Vote validation runs as a transaction rather than a simple read-then-write — so a "check eligibility, then mark as voted" sequence can't be split by two concurrent requests hitting the same record. It's the same class of problem as double-spending in a ledger: correctness matters more than speed here, and the transaction boundary is where that gets enforced.</p>
+              <p class="case-text">Duplicate-vote prevention was the part that couldn't be an afterthought. Vote validation uses Firestore transactions and atomic counters across 4 collections rather than a simple read-then-write — so a "check eligibility, then mark as voted" sequence can't be split by two concurrent requests hitting the same record. It's the same class of problem as double-spending in a ledger: correctness matters more than speed here, and the transaction boundary is where that gets enforced.</p>
+            </div>
+
+            <div class="case-block">
+              <p class="case-label">// protecting PII</p>
+              <p class="case-text">Aadhaar and iris data are stored as salted SHA-256 hashes rather than raw values, Firestore is restricted to backend-only access through security rules, and the service ships as a multi-stage Docker build.</p>
             </div>
 
             <div class="tag-row">
-              <span class="tag">Go</span><span class="tag">Firebase Firestore</span><span class="tag">JWT</span><span class="tag">RBAC</span><span class="tag">Transactional writes</span>
+              <span class="tag">Go</span><span class="tag">Gin</span><span class="tag">Firebase Firestore</span><span class="tag">JWT</span><span class="tag">RBAC</span><span class="tag">Docker</span><span class="tag">Transactional writes</span>
             </div>
             <a href="https://github.com/MidhunManu/BioVote" target="_blank" rel="noopener" class="source-link">View source <span aria-hidden="true">&rarr;</span></a>
           </div>
         </article>
 
-        <!-- Coupon Engine -->
+        <!-- Expense Voucher Management System -->
         <article class="endpoint-card reveal">
           <button class="endpoint-header" aria-expanded="false" data-toggle>
             <span class="route-method get">GET</span>
-            <span class="endpoint-path">/projects/coupon-engine</span>
+            <span class="endpoint-path">/projects/expense-voucher</span>
             <span class="endpoint-status status-200">200 OK</span>
             <svg class="chevron" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="endpoint-body">
-            <p class="endpoint-desc">Coupon Recommendation Engine — a solo project. A rule-based engine in Python that maximizes customer savings at checkout.</p>
+            <p class="endpoint-desc">Expense Voucher Management System — a full-stack voucher approval system built with React, Node.js/Express, and PostgreSQL.</p>
             <ul class="bullet-list">
-              <li>Eligibility checks for validity dates, minimum cart value, and category applicability.</li>
-              <li>Discount logic for both percentage-based and flat-value coupons.</li>
-              <li>CLI interface, with unit tests written using pytest.</li>
+              <li>JWT authentication and role-based access control for 3 roles (Employee, Director, Accounts), enforced on both the frontend and the backend.</li>
+              <li>PostgreSQL schema with CHECK constraints, a sequence for race-free voucher numbers, and a status-history audit trail; transactions with row locking prevent duplicate approvals.</li>
+              <li>22 integration tests with Jest and Supertest against a real test database, plus Zod validation, bcrypt password hashing, and search, filter, and pagination APIs.</li>
             </ul>
             <div class="tag-row">
-              <span class="tag">Python</span><span class="tag">pytest</span><span class="tag">CLI</span>
+              <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Jest</span>
             </div>
-            <a href="https://github.com/Kanak1009/Smart-Coupon-Recommendation" target="_blank" rel="noopener" class="source-link">View source <span aria-hidden="true">&rarr;</span></a>
+            <!-- To add a source link, paste the repo URL here:
+            <a href="REPO_URL" target="_blank" rel="noopener" class="source-link">View source <span aria-hidden="true">&rarr;</span></a> -->
           </div>
         </article>
 
@@ -237,9 +243,8 @@
           <div class="endpoint-body">
             <p class="endpoint-desc">A machine learning system that classifies comments into toxic, obscene, insult, and sarcastic categories.</p>
             <ul class="bullet-list">
-              <li>TF-IDF vectorization for text preprocessing and feature extraction.</li>
-              <li>A neural network built from Dense layers with ReLU and Sigmoid activations.</li>
-              <li>Trained with backpropagation, with an end-to-end prediction pipeline.</li>
+              <li>TF-IDF features and a neural network (Dense, ReLU, Sigmoid) trained with backpropagation.</li>
+              <li>An end-to-end prediction pipeline covering preprocessing, training, and evaluation.</li>
             </ul>
             <div class="tag-row">
               <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Neural Networks</span><span class="tag">TF-IDF</span>
@@ -262,19 +267,37 @@
         <div class="skills-block reveal skills-block--blue">
           <p class="skills-key"><span class="jk">"languages"</span></p>
           <div class="tag-row">
-            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Java</span><span class="tag">Go</span>
+            <span class="tag">Python</span><span class="tag">Go</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">SQL</span>
           </div>
         </div>
         <div class="skills-block reveal skills-block--amber">
-          <p class="skills-key"><span class="jk">"frameworks_and_libraries"</span></p>
+          <p class="skills-key"><span class="jk">"core_cs"</span></p>
           <div class="tag-row">
-            <span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span>
+            <span class="tag">Data Structures &amp; Algorithms</span><span class="tag">OOP</span><span class="tag">DBMS</span>
           </div>
         </div>
         <div class="skills-block reveal skills-block--green">
-          <p class="skills-key"><span class="jk">"tools"</span></p>
+          <p class="skills-key"><span class="jk">"backend_and_frameworks"</span></p>
           <div class="tag-row">
-            <span class="tag">PostgreSQL</span><span class="tag">Firebase</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Power BI</span>
+            <span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Node.js</span><span class="tag">REST API Design</span><span class="tag">JWT Auth</span><span class="tag">RBAC</span>
+          </div>
+        </div>
+        <div class="skills-block reveal skills-block--blue">
+          <p class="skills-key"><span class="jk">"databases"</span></p>
+          <div class="tag-row">
+            <span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Firebase Firestore</span><span class="tag">Oracle SQL</span>
+          </div>
+        </div>
+        <div class="skills-block reveal skills-block--amber">
+          <p class="skills-key"><span class="jk">"cloud_and_devops"</span></p>
+          <div class="tag-row">
+            <span class="tag">Docker</span><span class="tag">Google Cloud (Foundations)</span>
+          </div>
+        </div>
+        <div class="skills-block reveal skills-block--green">
+          <p class="skills-key"><span class="jk">"tools_and_libraries"</span></p>
+          <div class="tag-row">
+            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">pytest</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span>
           </div>
         </div>
       </div>
@@ -288,7 +311,7 @@
               <span class="edu-degree">Master's Degree, Computer Science</span>
               <span class="edu-date">2025 — Present</span>
             </div>
-            <span class="edu-school">MIT World Peace University, Pune, India</span>
+            <span class="edu-school">MIT World Peace University, Pune, India &middot; CGPA 7.5</span>
           </div>
           <div class="edu-item">
             <div class="edu-top">
@@ -296,6 +319,14 @@
               <span class="edu-date">2022 — 2025</span>
             </div>
             <span class="edu-school">Nowrosjee Wadia College, Pune, India &middot; CGPA 8.50</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-top">
+              <span class="edu-degree">Certifications</span>
+            </div>
+            <div class="tag-row" style="margin: 10px 0 0;">
+              <span class="tag">Google Cloud Foundations</span><span class="tag">Oracle SQL Database</span><span class="tag">IBM Data Science</span>
+            </div>
           </div>
         </div>
       </div>
