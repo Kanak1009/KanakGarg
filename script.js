@@ -191,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { label: 'Open GitHub', hint: 'github.com/Kanak1009', action: () => window.open('https://github.com/Kanak1009', '_blank', 'noopener') },
     { label: 'Open LinkedIn', hint: 'linkedin.com/in/kanak-garg', action: () => window.open('https://www.linkedin.com/in/kanak-garg-a339a3293/', '_blank', 'noopener') },
     { label: 'View BioVote source', hint: 'GET /projects/biovote', action: () => window.open('https://github.com/MidhunManu/BioVote', '_blank', 'noopener') },
-    { label: 'View Coupon Engine source', hint: 'GET /projects/coupon-engine', action: () => window.open('https://github.com/Kanak1009/Smart-Coupon-Recommendation', '_blank', 'noopener') },
     { label: 'View Toxic Comment Flagger source', hint: 'GET /projects/toxic-comment-flagger', action: () => window.open('https://github.com/Kanak1009/Toxic-Comment-Flagger-ML', '_blank', 'noopener') },
   ];
 
@@ -373,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
 `<span class="jp">{</span>
   <span class="jk">"name"</span><span class="jp">:</span> <span class="js">"Kanak Garg"</span><span class="jp">,</span>
   <span class="jk">"role"</span><span class="jp">:</span> <span class="js">"Backend Developer"</span><span class="jp">,</span>
-  <span class="jk">"stack"</span><span class="jp">:</span> <span class="jp">[</span><span class="js">"Python"</span><span class="jp">,</span> <span class="js">"FastAPI"</span><span class="jp">,</span> <span class="js">"PostgreSQL"</span><span class="jp">]</span><span class="jp">,</span>
+  <span class="jk">"stack"</span><span class="jp">:</span> <span class="jp">[</span><span class="js">"Python"</span><span class="jp">,</span> <span class="js">"Go"</span><span class="jp">,</span> <span class="js">"FastAPI"</span><span class="jp">,</span> <span class="js">"PostgreSQL"</span><span class="jp">]</span><span class="jp">,</span>
   <span class="jk">"location"</span><span class="jp">:</span> <span class="js">"Pune, India"</span><span class="jp">,</span>
   <span class="jk">"available_for_hire"</span><span class="jp">:</span> <span class="jb">true</span>
 <span class="jp">}</span>`
@@ -382,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
       command: 'curl -s https://kanakgarg.dev/api/v1/status',
       html:
 `<span class="jp">{</span>
-  <span class="jk">"endpoints_shipped"</span><span class="jp">:</span> <span class="jb">80</span><span class="jp">,</span>
+  <span class="jk">"endpoints_shipped"</span><span class="jp">:</span> <span class="jb">100</span><span class="jp">,</span>
   <span class="jk">"perf_improvement"</span><span class="jp">:</span> <span class="js">"110%"</span><span class="jp">,</span>
   <span class="jk">"currently"</span><span class="jp">:</span> <span class="js">"MSc Computer Science"</span><span class="jp">,</span>
   <span class="jk">"open_to_work"</span><span class="jp">:</span> <span class="jb">true</span>
